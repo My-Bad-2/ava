@@ -1,0 +1,9 @@
+[submodule "external/limine/limine"]
+	path = external/limine/limine
+	url = https://github.com/limine-bootloader/limine.git
+	branch = v7.x-binary
+	shallow = true
+[submodule "external/ovmf"]
+	path = external/ovmf
+	url = https://github.com/retrage/edk2-nightly.git
+	shallow = true

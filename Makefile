@@ -6,6 +6,12 @@ all:
 	@CC=clang CXX=clang++ cmake -B build -S . -DAva_ARCHITECTURE=$(ARCH)
 	@make -C build
 
+update-git-submodules:
+	@git submodule update --recursive
+
+init-git-submodules:
+	@git submodule update --init --recursive
+
 qemu-run-uefi:
 	@make -C build qemu-run-uefi
 

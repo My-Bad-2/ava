@@ -9,6 +9,17 @@ target_compile_options(limine PRIVATE
 )
 
 file(COPY_FILE limine/limine.h ${PARENT_PROJECT_ROOT}/src/kernel/include/limine.h ONLY_IF_DIFFERENT)
+file(COPY limine/limine-uefi-cd.bin DESTINATION ${PARENT_PROJECT_BINARY_DIR})
+
+if(${PARENT_PROJECT_NAME}_ARCHITECTURE STREQUAL x86_64)
+    file(COPY limine/limine-bios.sys
+        limine/limine-bios-cd.bin
+        limine/BOOTX64.EFI
+        limine/BOOTIA32.EFI
+        DESTINATION
+        ${PARENT_PROJECT_BINARY_DIR}/
+    )
+endif()
 
 set(LIMINE_EXECUTABLE_SOURCE
     ${CMAKE_CURRENT_SOURCE_DIR}/limine/limine-uefi-cd.bin

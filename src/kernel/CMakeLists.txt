@@ -12,6 +12,10 @@ set(KERNEL_SOURCE_FILES ${KMAIN_DIRECTORY_SOURCES})
 add_executable(kernel ${KERNEL_SOURCE_FILES})
 
 target_include_directories(kernel PRIVATE include)
+set_target_properties(kernel PROPERTIES
+    OUTPUT_NAME kernel.elf
+    RUNTIME_OUTPUT_DIRECTORY ${PARENT_PROJECT_BINARY_DIR}    
+)
 
 target_compile_options(kernel PRIVATE -Werror
     -ffreestanding

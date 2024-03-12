@@ -6,7 +6,7 @@ set_property(CACHE ${PARENT_PROJECT_NAME}_ARCHITECTURE PROPERTY STRINGS x86_64)
 option(${PARENT_PROJECT_NAME}_ENABLE_DOXYGEN "Enable Doxygen documentation builds for source." OFF)
 option(${PARENT_PROJECT_NAME}_ENABLE_LTO "Enable Interprocedural Optimization, aka Link Time Optimization (LTO)." ON)
 
-if(ENABLE_LTO)
+if(${PARENT_PROJECT_NAME}_ENABLE_LTO)
   include(CheckIPOSupported)
   check_ipo_supported(RESULT result OUTPUT output)
 

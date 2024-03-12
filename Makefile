@@ -1,4 +1,16 @@
 ARCH := x86_64
 
 all:
-	CC=clang CXX=clang++ cmake -B build -S . -DAva_ARCHITECTURE=$(ARCH)
+	@rm -rf build
+	$(info Building the project for system architecture $(ARCH))
+	@CC=clang CXX=clang++ cmake -B build -S . -DAva_ARCHITECTURE=$(ARCH)
+	@make -C build
+
+qemu-run-uefi:
+	@make -C build qemu-run-uefi
+
+help:
+	@make -C build help
+
+clean:
+	@make -C build clean

@@ -5,16 +5,24 @@ project(ava-kernel
 )
 
 file(GLOB KMAIN_DIRECTORY_SOURCES "*.c")
-file(GLOB_RECURSE KERNEL_INCLUDE_DIRECTORIES "include/*.h" "include/*.hpp")
 
-set(KERNEL_SOURCE_FILES ${KMAIN_DIRECTORY_SOURCES})
+file(GLOB_RECURSE ARCH_DIRECTORY_SOURCES
+    "arch/${${PARENT_PROJECT_NAME}_ARCHITECTURE}/*.c"
+    "arch/${${PARENT_PROJECT_NAME}_ARCHITECTURE}/*.cpp"
+)
+
+set(KERNEL_SOURCE_FILES ${KMAIN_DIRECTORY_SOURCES} ${ARCH_DIRECTORY_SOURCES})
 
 add_executable(kernel ${KERNEL_SOURCE_FILES})
 
-target_include_directories(kernel PRIVATE include)
+target_include_directories(kernel
+    PRIVATE include
+    PRIVATE include/arch/${${PARENT_PROJECT_NAME}_ARCHITECTURE}
+)
+
 set_target_properties(kernel PROPERTIES
     OUTPUT_NAME kernel.elf
-    RUNTIME_OUTPUT_DIRECTORY ${PARENT_PROJECT_BINARY_DIR}    
+    RUNTIME_OUTPUT_DIRECTORY ${PARENT_PROJECT_BINARY_DIR}
 )
 
 target_compile_options(kernel PRIVATE -Werror
@@ -52,3 +60,5 @@ target_link_options(kernel PRIVATE
     -static
     --no-dynamic-linker
 )
+
+target_link_libraries(kernel PRIVATE klibc)

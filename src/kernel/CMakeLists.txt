@@ -60,5 +60,3 @@ target_link_options(kernel PRIVATE
     -static
     --no-dynamic-linker
 )
-
-target_link_libraries(kernel PRIVATE klibc)

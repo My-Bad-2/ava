@@ -17,7 +17,7 @@ if(${PARENT_PROJECT_NAME}_ENABLE_LTO)
   endif()
 endif()
 
-option(ENABLE_CCACHE "Enable the usage of Ccache, in order to speed up rebuild times." OFF)
+option(ENABLE_CCACHE "Enable the usage of Ccache, in order to speed up rebuild times." ON)
 find_program(CCACHE_FOUND ccache)
 
 if(CCACHE_FOUND AND ENABLE_CCACHE)

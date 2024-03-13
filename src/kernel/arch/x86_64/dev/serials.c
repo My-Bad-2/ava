@@ -1,6 +1,8 @@
 #include <dev/serials.h>
 #include <arch.h>
+
 #include <stdbool.h>
+#include <stddef.h>
 
 #define SERIALS_DATA 0
 #define SERIALS_INTERRUPT 1
@@ -127,4 +129,13 @@ uint8_t serials_getc(uint16_t port)
 
 	// Return the 8-bit character read from the data register
 	return serials_read_register(port, SERIALS_DATA);
+}
+
+void serials_write_str(uint16_t port, const char* str)
+{
+	// Iterate through each character and transmit it using `serials_putc`.
+	for(size_t i = 0; str[i] != '\0'; i++)
+	{
+		serials_putc(port, str[i]);
+	}
 }

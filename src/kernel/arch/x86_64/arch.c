@@ -55,4 +55,6 @@ void outpd(uint16_t port, uint32_t value)
 void arch_init()
 {
 	serials_init(SERIAL_COM_DEFAULT);
+
+	serials_write_str(SERIAL_COM_DEFAULT, "Hello World!\n");
 }

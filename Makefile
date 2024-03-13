@@ -3,7 +3,7 @@ ARCH := x86_64
 all:
 	@rm -rf build
 	$(info Building the project for system architecture $(ARCH))
-	@CC=clang CXX=clang++ cmake -B build -S . -DAva_ARCHITECTURE=$(ARCH)
+	@CC=clang CXX=clang++ cmake -B build -S . -DAva_ARCHITECTURE=$(ARCH) -DCMAKE_BUILD_TYPE=RelWithDebInfo
 	@make -C build
 
 update-git-submodules:

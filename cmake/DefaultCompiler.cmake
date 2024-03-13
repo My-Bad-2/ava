@@ -15,25 +15,9 @@ set(desired_common_warning_flags
     -Wno-padded
 
     # Desired Warnings
-    -Wconversion
-    -Wlogical-op
-    -Wundef
-    -Wredundant-decls
-    -Wshadow
-    -Wstrict-overflow=2
-    -Wwrite-strings
-    -Wpointer-arith
-    -Wcast-qual
     -Wmissing-include-dirs
-    -Wcast-align
-    -Wswitch-enum
-    -Wsign-conversion
-    -Wvector-operation-performance
     -Wduplicated-cond
-    -Wshift-overflow=2
     -Wnull-dereference
-    -Wduplicated-cond
-    -Wcast-align=strict
 )
 
 set(desired_cpp_warning_flags

@@ -2,6 +2,9 @@
 #define KLIBC_INCLUDE_STRING_H
 
 #include <stddef.h>
+#include <sys/features.h>
+
+__BEGIN_CDECLS
 
 int memcmp(const void *s1, const void *s2, size_t n);
 void* memset(void* dest, int c, size_t n);
@@ -19,5 +22,7 @@ int strncmp(const char *s1, const char *s2, size_t n);
 
 char* strcat(char* restrict dst, const char* restrict src);
 char* strncat(char* restrict dst, const char* restrict src, size_t maxlen);
+
+__END_CDECLS
 
 #endif // KLIBC_INCLUDE_STRING_H

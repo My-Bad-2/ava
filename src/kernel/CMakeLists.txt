@@ -14,6 +14,7 @@ target_link_libraries(kernel PRIVATE klibc)
 target_include_directories(kernel
     PRIVATE include
     PRIVATE include/arch/${${PARENT_PROJECT_NAME}_ARCHITECTURE}
+    PRIVATE include/klibc
 )
 
 set_target_properties(kernel PROPERTIES

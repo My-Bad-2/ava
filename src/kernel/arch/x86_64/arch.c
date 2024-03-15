@@ -1,17 +1,17 @@
 #include <dev/serials.h>
 #include <arch.h>
 
-void arch_halt()
+void arch_halt(void)
 {
 	asm volatile("hlt");
 }
 
-void arch_enable_interrupts()
+void arch_enable_interrupts(void)
 {
 	asm volatile("sti");
 }
 
-void arch_disable_interrupts()
+void arch_disable_interrupts(void)
 {
 	asm volatile("cli");
 }
@@ -52,7 +52,7 @@ void outpd(uint16_t port, uint32_t value)
 	asm volatile("outl %1, %0" ::"Nd"(port), "a"(value));
 }
 
-void arch_init()
+void arch_init(void)
 {
 	serials_init(SERIAL_COM_DEFAULT);
 

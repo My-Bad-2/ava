@@ -6,11 +6,11 @@
 
 __BEGIN_DECLS
 
-void arch_init();
+void arch_init(void);
 
-void arch_halt();
-void arch_disable_interrupts();
-void arch_enable_interrupts();
+void arch_halt(void);
+void arch_disable_interrupts(void);
+void arch_enable_interrupts(void);
 
 uint8_t inp(uint16_t port);
 uint32_t inpd(uint16_t port);

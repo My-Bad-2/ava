@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <sys/features.h>
 
-__BEGIN_CDECLS
+__BEGIN_DECLS
 
 #define SERIAL_COM_PORT_1 0x3F8
 #define SERIAL_COM_PORT_2 0x2F8
@@ -20,6 +20,6 @@ uint8_t serials_getc(uint16_t port);
 
 void serials_write_str(uint16_t port, const char* str);
 
-__END_CDECLS
+__END_DECLS
 
 #endif // KERNEL_INCLUDE_ARCH_X86_64_DEV_SERIALS_H

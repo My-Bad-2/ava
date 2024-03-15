@@ -16,13 +16,13 @@
 #if !defined(__ASSEMBLER__)
 
 	#ifdef __cplusplus
-		#define __BEGIN_CDECLS \
+		#define __BEGIN_DECLS \
 			extern "C"         \
 			{
-		#define __END_CDECLS }
+		#define __END_DECLS }
 	#else
-		#define __BEGIN_CDECLS
-		#define __END_CDECLS
+		#define __BEGIN_DECLS
+		#define __END_DECLS
 	#endif
 
 	#ifdef __cplusplus

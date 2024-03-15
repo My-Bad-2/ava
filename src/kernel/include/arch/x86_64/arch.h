@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <sys/features.h>
 
-__BEGIN_CDECLS
+__BEGIN_DECLS
 
 void arch_init();
 
@@ -20,6 +20,6 @@ void outp(uint16_t port, uint8_t value);
 void outpw(uint16_t port, uint16_t value);
 void outpd(uint16_t port, uint32_t value);
 
-__END_CDECLS
+__END_DECLS
 
 #endif // KERNEL_INCLUDE_ARCH_X86_64_ARCH_H

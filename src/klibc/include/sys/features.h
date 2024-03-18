@@ -15,9 +15,11 @@
 
 #if !defined(__ASSEMBLER__)
 
+	#define STRINGIFY(s1, s2) s1##s2
+
 	#ifdef __cplusplus
 		#define __BEGIN_DECLS \
-			extern "C"         \
+			extern "C"        \
 			{
 		#define __END_DECLS }
 	#else

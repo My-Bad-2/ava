@@ -1,6 +1,6 @@
 #include "local.h"
 
-inline void stdio_append_termination_str(FILE* fp)
+void stdio_append_termination_str(FILE* fp)
 {
 	if(fp->write != NULL || fp->max_chars == 0)
 	{

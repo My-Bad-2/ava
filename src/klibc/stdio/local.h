@@ -1,6 +1,7 @@
 #ifndef KLIBC_STDIO_LOCAL_H
 #define KLIBC_STDIO_LOCAL_H
 
+#include "sys/features.h"
 #include <stdio.h>
 #include <limits.h>
 #include <stdbool.h>
@@ -97,6 +98,8 @@ typedef long stdio_signed_value_t;
 
 #define STDIO_ABS(x) ((stdio_unsigned_value_t)((x) > 0 ? (x) : -((stdio_signed_value_t)x)))
 
+__BEGIN_DECLS
+
 void stdio_print_integer(FILE* fp, stdio_unsigned_value_t value, bool negative, unsigned char base,
 						 size_t precision, size_t width, stdio_flags_t flags);
 void stdio_print_integer_finalize(FILE* fp, char* buffer, size_t len, bool negative,
@@ -107,5 +110,7 @@ void stdio_out_reverse(FILE* fp, const char* buffer, size_t len, size_t width, s
 stdio_flags_t stdio_parse_flags(const char** format);
 void stdio_format_string_loop(FILE* fp, const char* format, va_list args);
 int stdio_vsnprintf(FILE* fp, const char* format, va_list args);
+
+__END_DECLS
 
 #endif // KLIBC_STDIO_LOCAL_H

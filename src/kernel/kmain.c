@@ -1,14 +1,15 @@
 #include <limine.h>
 #include <arch.h>
 #include <dev/streams.h>
-#include <stdio.h>
+#include <log.h>
 
 void kmain(void)
 {
 	dev_setup_streams();
+	log_set_stream(stderr);
 	arch_init();
 
-	printf("Hello, World!\n");
+	LOG_INFO("Hello, %s!", "Ava");
 
 	while(1)
 	{

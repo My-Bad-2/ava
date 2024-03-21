@@ -1,3 +1,4 @@
+#include <arch.h>
 #include <log.h>
 #include <stdarg.h>
 #include <stdbool.h>
@@ -95,4 +96,13 @@ void log_message(log_level level, const char* file, int line, const char* fmt, .
 	va_start(args, fmt);
 	vlog_message(log_output_stream, level_char, level_color, file, line, fmt, args);
 	va_end(args);
+
+	if(level == Log_level_Fatal)
+	{
+		while(true)
+		{
+			arch_disable_interrupts();
+			arch_halt();
+		}
+	}
 }

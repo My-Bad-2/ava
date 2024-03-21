@@ -1,3 +1,5 @@
+.text
+
 .global gdt_update
 gdt_update:
     lgdtq (%rdi)

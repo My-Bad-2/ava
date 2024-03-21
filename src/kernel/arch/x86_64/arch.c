@@ -1,4 +1,5 @@
-#include "cpu/gdt.h"
+#include <cpu/gdt.h>
+#include <cpu/idt.h>
 #include <dev/serials.h>
 #include <arch.h>
 
@@ -55,6 +56,14 @@ void outpd(uint16_t port, uint32_t value)
 
 void arch_init(void)
 {
+	arch_disable_interrupts();
+	
 	serials_init(SERIAL_COM_DEFAULT);
+	
 	gdt_init();
+	idt_init();
+	
+	arch_enable_interrupts();
+
+	asm volatile("div %ah");
 }

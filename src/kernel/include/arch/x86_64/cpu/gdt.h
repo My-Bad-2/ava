@@ -63,9 +63,10 @@ typedef struct
 } __PACKED gdt_t;
 
 void gdt_init(void);
-void gdt_update(void* descriptor);
 void gdt_load_tss(tss_t* tss);
-void tss_update(void);
+
+extern void gdt_update(void* descriptor);
+extern void tss_update(void);
 
 __END_DECLS
 

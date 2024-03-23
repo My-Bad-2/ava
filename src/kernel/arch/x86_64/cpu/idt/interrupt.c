@@ -71,14 +71,14 @@ void error_handler(interrupt_frame_t* frame)
 	LOG_ERROR("Exception(%s) occurred", interrupt_exception_messages[frame->vector]);
 
 	dump_interrupt_frame(frame);
-	
+
 	if(frame->rbp != 0)
 	{
 		LOG_ERROR("Stacktrace: ");
 		dump_backtrace(frame->rbp);
 	}
 
-	LOG_FATAL("Stopping System!");
+	LOG_FATAL("Halting System!");
 }
 
 void exception_handler(interrupt_frame_t* frame)

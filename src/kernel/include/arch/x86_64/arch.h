@@ -9,6 +9,7 @@ __BEGIN_DECLS
 void arch_init(void);
 
 void arch_halt(void);
+void arch_pause(void);
 void arch_disable_interrupts(void);
 void arch_enable_interrupts(void);
 
@@ -19,6 +20,9 @@ uint16_t inpw(uint16_t port);
 void outp(uint16_t port, uint8_t value);
 void outpw(uint16_t port, uint16_t value);
 void outpd(uint16_t port, uint32_t value);
+
+uint64_t arch_save_flags(void);
+void arch_restore_flags(uint64_t flags);
 
 __END_DECLS
 

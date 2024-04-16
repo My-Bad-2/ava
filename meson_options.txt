@@ -1,0 +1,8 @@
+option(
+    'kernel-arch',
+    type: 'combo',
+    choices: ['x86_64'],
+    value: 'x86_64',
+    description: 'Kernel architecture to target',
+    yield: true,
+)

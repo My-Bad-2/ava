@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Directories
+.vscode/
+.cache/
+subprojects/limine/
+subprojects/ovmf/

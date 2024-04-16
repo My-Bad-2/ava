@@ -1,7 +1,8 @@
 #include <limine.h>
+#include <arch.hpp>
 
 extern "C" void kmain() {
     for (;;) {
-        asm volatile("hlt");
+        arch::pause();
     }
 }

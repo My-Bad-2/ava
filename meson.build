@@ -2,8 +2,7 @@ project(
     'Ava',
     ['c', 'cpp'],
     default_options: [
-        'warning_level=3',
-        'werror=true',
+        'warning_level=2',
         'debug=false',
         'optimization=2',
         'c_std=gnu2x',

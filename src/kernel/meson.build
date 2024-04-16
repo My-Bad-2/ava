@@ -1,6 +1,13 @@
 kernel_sources = files('kmain.cpp')
-kernel_include = [include_directories('include/')]
+
+kernel_include = [
+    include_directories('include/'),
+    include_directories('include/arch' / get_option('kernel-arch')),
+]
+
 kernel_include += limine_subproject_include
+
+subdir('arch' / get_option('kernel-arch'))
 
 clangtidy_files += kernel_sources
 

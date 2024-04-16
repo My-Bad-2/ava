@@ -48,6 +48,13 @@ int isxdigit(int c) {
     return isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f');
 }
 
+/// The toascii function converts the character \p c to its corresponding ASCII character code 
+/// by performing a bitwise AND operation with 0x7F (0111 1111 in binary), ensuring that only 
+/// the least significant 7 bits of the input integer are preserved.
+/// 
+/// \note If the input integer value is outside the range of ASCII characters (0 to 127),
+///       the resulting ASCII character code may not represent a valid printable character.
+///       Use caution when using this function with values outside the ASCII range.
 int toascii(int c) {
     return c & 0x7F;
 }

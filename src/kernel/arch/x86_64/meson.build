@@ -1,1 +1,1 @@
-kernel_sources += files('arch.c', 'arch.cpp')
+kernel_sources += files('arch.cpp')

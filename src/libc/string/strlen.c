@@ -7,8 +7,9 @@ size_t strlen(const char* s) {
 
     const char* end = s;
 
-    for (; *end != '\0'; ++end)
+    for (; *end != '\0'; ++end) {
         ;
+    }
 
     return end - s;
 }

@@ -1353,7 +1353,7 @@ HTML_FILE_EXTENSION    = .html
 # of the possible markers and block names see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_HEADER            =
+HTML_HEADER            = @HTML_HEADER@/header.html
 
 # The HTML_FOOTER tag can be used to specify a user-defined HTML footer for each
 # generated HTML page. If the tag is left blank doxygen will generate a standard
@@ -1375,7 +1375,7 @@ HTML_FOOTER            =
 # obsolete.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_STYLESHEET        = @DOXYGEN_STYLESHEET_PATH@
+HTML_STYLESHEET        = @DOXYGEN_TEMPLATE_PATH@/doxygen-awesome.css
 
 # The HTML_EXTRA_STYLESHEET tag can be used to specify additional user-defined
 # cascading style sheets that are included after the standard style sheets
@@ -1393,7 +1393,8 @@ HTML_STYLESHEET        = @DOXYGEN_STYLESHEET_PATH@
 # documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_STYLESHEET  = @DOXYGEN_TEMPLATE_PATH@/doxygen-awesome-sidebar-only.css \
+                        @DOXYGEN_TEMPLATE_PATH@/doxygen-awesome-sidebar-only-darkmode-toggle.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -1403,7 +1404,9 @@ HTML_EXTRA_STYLESHEET  =
 # files will be copied as-is; there are no commands or markers available.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_FILES       =
+HTML_EXTRA_FILES       = @DOXYGEN_TEMPLATE_PATH@/doxygen-awesome-darkmode-toggle.js \
+                        @DOXYGEN_TEMPLATE_PATH@/doxygen-awesome-fragment-copy-button.js \
+                        @DOXYGEN_TEMPLATE_PATH@/doxygen-awesome-interactive-toc.js
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.

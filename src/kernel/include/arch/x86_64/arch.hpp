@@ -12,6 +12,10 @@
 #include <stdint.h>
 #include <sys/cdefs.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// \brief Read a byte from the specified I/O port.
 ///
 /// \param port The I/O port from which to read the byte.
@@ -47,6 +51,10 @@ void outpw(uint16_t port, uint16_t value);
 /// \param port The I/O port to which to write the double word.
 /// \param data The double word to write to the specified I/O port.
 void outpd(uint16_t port, uint32_t value);
+
+#ifdef __cplusplus
+}
+#endif
 
 namespace arch {
 /// \brief Halt the processor.

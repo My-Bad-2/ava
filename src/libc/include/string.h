@@ -12,7 +12,9 @@
 #include <stddef.h>
 #include <sys/cdefs.h>
 
-__BEGIN_DECLS;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /// \brief Compares the first count bytes of the objects pointed to by \p lhs and \p rhs.
 /// The comparison is done lexicographically.
@@ -125,6 +127,7 @@ char* strcat(char* restrict dst, const char* restrict src);
 /// \return Returns a copy of dest
 char* strncat(char* restrict dst, const char* restrict src, size_t count);
 
-__END_DECLS;
-
+#ifdef __cplusplus
+}
+#endif
 #endif  // _STRING_H

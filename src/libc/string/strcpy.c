@@ -8,10 +8,10 @@ char* strcpy(char* restrict dest, const char* restrict src) {
     return dest;
 }
 
-/// If \p count is reached before the entire array \p src was copied, the resulting character
+/// \note If \p count is reached before the entire array \p src was copied, the resulting character
 /// array is not null-terminated.
 ///
-/// If, after copying the terminating null character from \p src, \p count is not reached,
+/// \note If, after copying the terminating null character from \p src, \p count is not reached,
 /// additional null characters are written to dest until the total of \p count characters
 /// have been written.
 char* strncpy(char* restrict dest, const char* restrict src, size_t count) {

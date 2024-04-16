@@ -11,7 +11,9 @@
 
 #include <sys/cdefs.h>
 
-__BEGIN_DECLS;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /// \brief Checks if the given character is an alphanumeric character.
 ///
@@ -72,11 +74,11 @@ int ispunct(int c);
 /// \brief Checks if the given character is either
 /// - A standard white-space character:
 ///     - Space (0x20, ' '),
-///     - Form feed (0x0c, '\f'),
-///     - Line feed (0x0a, '\n'),
-///     - Carriage return (0x0d, '\r'),
-///     - Horizontal tab (0x09, '\t'),
-///     - Vertical tab (0x0b, '\v'),
+///     - Form feed (0x0c, '\\f'),
+///     - Line feed (0x0a, '\\n'),
+///     - Carriage return (0x0d, '\\r'),
+///     - Horizontal tab (0x09, '\\t'),
+///     - Vertical tab (0x0b, '\\v'),88
 ///
 /// \param c character to classify
 /// \return Non-zero value if the character is a whitespace character, zero otherwise.
@@ -112,6 +114,7 @@ int toupper(int c);
 /// \return The ASCII character code corresponding to the character.
 int toascii(int c);
 
-__END_DECLS;
-
+#ifdef __cplusplus
+}
+#endif
 #endif  // _CTYPE_H

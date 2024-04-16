@@ -1,0 +1,4 @@
+[submodule "external/doxygen-template"]
+	path = external/doxygen-template
+	url = https://github.com/jothepro/doxygen-awesome-css.git
+	shallow = true

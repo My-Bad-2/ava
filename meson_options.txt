@@ -6,3 +6,11 @@ option(
     description: 'Kernel architecture to target',
     yield: true,
 )
+
+option(
+    'gcc-toolchain',
+    type: 'string',
+    value: '~/opt/cross/',
+    description: 'Path to gcc cross-compiler',
+    yield: true,
+)

@@ -14,7 +14,7 @@ clangtidy_files += kernel_sources
 kernel_exec = executable(
     'kernel',
     kernel_sources,
-    include_directories: [kernel_include, libc_include],
+    include_directories: [kernel_include, libc_include, libstdcxx_include],
     link_with: [libc_library],
     install: false,
 )

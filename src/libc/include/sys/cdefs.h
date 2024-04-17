@@ -1,9 +1,9 @@
 #ifndef _SYS_CDEFS_H
 #define _SYS_CDEFS_H
 
-#if !defined(__clang__)
-#error "Unknown Compiler!"
-#endif
+// #if !defined(__clang__) && !defined(_)
+// #error "Unknown Compiler!"
+// #endif
 
 #ifndef __has_cpp_attribute
 #define __has_cpp_attribute(x) 0

@@ -9,6 +9,7 @@ project(
         'build.c_std=gnu2x',
         'cpp_std=gnu++23',
         'build.cpp_std=gnu++23',
+        'b_staticpic=false',
     ],
     meson_version: '>=0.64.0',
     version: '0.0.1',
@@ -73,6 +74,17 @@ limine_subproject = subproject(
 limine_subproject_include = limine_subproject.get_variable('limine_include')
 
 ovmf_subproject = subproject('ovmf')
+
+if (c_compiler_id == 'clang')
+    libstdcxx_subproject = subproject(
+        'libstdc++',
+        default_options: ['architecture=' + get_option('kernel-arch')],
+    )
+
+    libstdcxx_include = libstdcxx_subproject.get_variable('include_dirs')
+else
+    libstdcxx_include = []
+endif
 
 # Process Source Tree
 clangtidy_files = []

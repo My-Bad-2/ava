@@ -36,3 +36,4 @@
 .cache/
 subprojects/limine/
 subprojects/ovmf/
+subprojects/libstdc++/

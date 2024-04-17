@@ -1,0 +1,62 @@
+#include <arch.hpp>
+#include <dev/serials.hpp>
+
+#define SERIALS_DATA 0
+#define SERIALS_INTERRUPT 1
+#define SERIALS_INTERRUPT_IDENTIFACTOR 2
+#define SERIALS_LINE_CONTROL 3
+#define SERIALS_MODEM_CONTROL 4
+#define SERIALS_LINE_STATUS 5
+#define SERIALS_MODEM_STATUS 6
+#define SERIALS_SCRATCH 7
+
+#define SERIALS_BAUD_RATE_LOW SERIALS_DATA
+#define SERIALS_BAUD_RATE_HIGH SERIALS_INTERRUPT
+#define SERIALS_FIFO_CONTROLLER SERIALS_INTERRUPT_IDENTIFACTOR
+
+#define SERIALS_LINE_DS_5 0
+#define SERIALS_LINE_DS_6 1
+#define SERIALS_LINE_DS_7 2
+#define SERIALS_LINE_DS_8 3
+#define SERIALS_LINE_DLAB_STATUS (1 << 7)
+
+#define SERIALS_MODEM_DTR (1 << 0)
+#define SERIALS_MODEM_RTS (1 << 1)
+#define SERIALS_MODEM_OUT1 (1 << 2)
+#define SERIALS_MODEM_OUT2 (1 << 3)
+#define SERIALS_MODEM_LOOPBACK (1 << 4)
+
+#define SERIALS_INTERRUPT_WHEN_DATA_AVAILABLE (1 << 0)
+#define SERIALS_INTERRUPT_WHEN_TRANSMITTER_EMPTY (1 << 1)
+#define SERIALS_INTERRUPT_WHEN_BREAK_EMPTY (1 << 2)
+#define SERIALS_INTERRUPT_WHEN_STATUS_UPDATE (1 << 3)
+
+#define SERIALS_LINE_DATA_READY (1 << 0)
+#define SERIALS_LINE_OVERRUN_ERROR (1 << 1)
+#define SERIALS_LINE_PARITY_ERROR (1 << 2)
+#define SERIALS_LINE_FRAMING_ERROR (1 << 3)
+#define SERIALS_LINE_BREAK_INDICATOR (1 << 4)
+#define SERIALS_LINE_TRANSMITTER_BUF_EMPTY (1 << 5)
+#define SERIALS_LINE_TRANSMITTER_EMPTY (1 << 6)
+#define SERIALS_LINE_IMPENDING_ERROR (1 << 7)
+
+#define SERIALS_ENABLE_FIFO (1 << 0)
+#define SERIALS_FIFO_CLEAR_RECEIVE (1 << 1)
+#define SERIALS_FIFO_CLEAR_TRANSMIT (1 << 2)
+#define SERIALS_FIFO_ENABLE_64_BYTE (1 << 5)
+#define SERIALS_FIFO_TRIGGER_LEVEL1 (0 << 6)
+#define SERIALS_FIFO_TRIGGER_LEVEL2 (1 << 6)
+#define SERIALS_FIFO_TRIGGER_LEVEL3 (2 << 6)
+#define SERIALS_FIFO_TRIGGER_LEVEL4 (3 << 6)
+
+namespace dev {
+void serials::write_register(uint16_t reg, uint8_t val) {
+    outp(this->port + reg, val);
+}
+
+uint8_t serials::read_register(uint16_t reg) {
+    return inp(this->port + reg);
+}
+
+void serials::init() {}
+}  // namespace dev

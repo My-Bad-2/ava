@@ -130,4 +130,4 @@ char* strncat(char* restrict dst, const char* restrict src, size_t count);
 #ifdef __cplusplus
 }
 #endif
-#endif  // _STRING_H
+#endif	// _STRING_H

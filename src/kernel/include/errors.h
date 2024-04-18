@@ -1,0 +1,24 @@
+#ifndef TYPES_H
+#define TYPES_H
+
+#include <stdint.h>
+typedef int32_t status_t;
+
+enum error_codes : int32_t {
+	ERROR_TOO_BIG,
+	ERROR_ACCESS,
+	ERROR_ADDR_IN_USE,
+	ERROR_ADDR_NOT_AVAIL,
+	ERROR_AF_NO_SUPPORT,
+	ERROR_AGAIN,
+	ERROR_BAD_MSG,
+	ERROR_BUSY,
+	ERROR_CANCELED,
+	ERROR_CHILD,
+	ERROR_INVALID,
+	ERROR_IN_PROGRESS,
+	ERROR_FAULT,
+	ERROR_RANGE,
+};
+
+#endif	// TYPES_H

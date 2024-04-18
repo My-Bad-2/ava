@@ -117,4 +117,4 @@ int toascii(int c);
 #ifdef __cplusplus
 }
 #endif
-#endif  // _CTYPE_H
+#endif	// _CTYPE_H

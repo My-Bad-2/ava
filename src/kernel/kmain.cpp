@@ -1,8 +1,11 @@
-#include <limine.h>
 #include <arch.hpp>
+#include <limine.h>
 
 extern "C" void kmain() {
-    for (;;) {
-        arch::pause();
-    }
+	arch::init();
+	arch::write("Hello World!\n");
+
+	for (;;) {
+		arch::pause();
+	}
 }

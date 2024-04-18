@@ -1,4 +1,5 @@
 #include <arch.hpp>
+#include <dev/serials.hpp>
 
 /// This inline assembly function reads a byte from the specified I/O port using the `INB` (Input Byte)
 /// assembly instruction. The result is stored in the provided variable.
@@ -6,9 +7,9 @@
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 uint8_t inp(uint16_t port) {
-    uint8_t ret = 0;
-    asm volatile("inb %1, %0" : "=a"(ret) : "Nd"(port));
-    return ret;
+	uint8_t ret = 0;
+	asm volatile("inb %1, %0" : "=a"(ret) : "Nd"(port));
+	return ret;
 }
 
 /// This inline assembly function reads a word (16 bits) from the specified I/O port using the `INW`
@@ -17,9 +18,9 @@ uint8_t inp(uint16_t port) {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 uint16_t inpw(uint16_t port) {
-    uint16_t ret = 0;
-    asm volatile("inw %1, %0" : "=a"(ret) : "Nd"(port));
-    return ret;
+	uint16_t ret = 0;
+	asm volatile("inw %1, %0" : "=a"(ret) : "Nd"(port));
+	return ret;
 }
 
 /// This inline assembly function reads a double word (32 bits) from the specified I/O port using the `INL`
@@ -28,9 +29,9 @@ uint16_t inpw(uint16_t port) {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 uint32_t inpd(uint16_t port) {
-    uint32_t ret = 0;
-    asm volatile("inl %1, %0" : "=a"(ret) : "Nd"(port));
-    return ret;
+	uint32_t ret = 0;
+	asm volatile("inl %1, %0" : "=a"(ret) : "Nd"(port));
+	return ret;
 }
 
 /// This inline assembly function writes a byte to the specified I/O port using the `OUTB` (Output Byte)
@@ -39,7 +40,7 @@ uint32_t inpd(uint16_t port) {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void outp(uint16_t port, uint8_t value) {
-    asm volatile("outb %1, %0" ::"Nd"(port), "a"(value));
+	asm volatile("outb %1, %0" ::"Nd"(port), "a"(value));
 }
 
 /// This inline assembly function writes a word (16 bits) to the specified I/O port using the `OUTW` (Output Word)
@@ -48,7 +49,7 @@ void outp(uint16_t port, uint8_t value) {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void outpw(uint16_t port, uint16_t value) {
-    asm volatile("outw %1, %0" ::"Nd"(port), "a"(value));
+	asm volatile("outw %1, %0" ::"Nd"(port), "a"(value));
 }
 
 /// This inline assembly function writes a double word (32 bits) to the specified I/O port using the `OUTL` (Output Long)
@@ -57,17 +58,21 @@ void outpw(uint16_t port, uint16_t value) {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void outpd(uint16_t port, uint32_t value) {
-    asm volatile("outl %1, %0" ::"Nd"(port), "a"(value));
+	asm volatile("outl %1, %0" ::"Nd"(port), "a"(value));
 }
 
 namespace arch {
+namespace {
+constinit dev::serials serial_device = {};
+}
+
 /// This inline assembly function executes the `HLT` (Halt) assembly instruction, which puts the processor
 /// into a halt state, causing it to cease executing instructions until an interrupt or external event occurs.
 ///
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void halt() {
-    asm volatile("hlt");
+	asm volatile("hlt");
 }
 
 /// This inline assembly function executes the `STI` (Set Interrupt Enable) assembly instruction,
@@ -77,7 +82,7 @@ void halt() {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void enable_interrupts() {
-    asm volatile("sti");
+	asm volatile("sti");
 }
 
 /// This inline assembly function executes the `CLI` (Clear Interrupt Enable) assembly instruction,
@@ -87,7 +92,7 @@ void enable_interrupts() {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void disable_interrupts() {
-    asm volatile("cli");
+	asm volatile("cli");
 }
 
 /// This inline assembly function executes the `PAUSE` instruction, which is a hint to the processor
@@ -97,8 +102,18 @@ void disable_interrupts() {
 /// \note This function is marked as volatile to indicate to the compiler that the assembly instruction
 /// has side effects and should not be optimized out.
 void pause() {
-    asm volatile("pause");
+	asm volatile("pause");
 }
 
-void init() {}
+void init() {
+	// Initialize the serial device, return if the serial chip is faulty.
+	serial_device.set_port(SERIAL_COM_PORT_1);
+	if (!serial_device.init()) {
+		return;
+	}
+}
+
+void write(const char* str) {
+	serial_device.write(str);
+}
 }  // namespace arch

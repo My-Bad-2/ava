@@ -69,7 +69,13 @@ void disable_interrupts();
 /// \brief Enable interrupts.
 void enable_interrupts();
 
+/// \brief Initialize Architecture-specific components.
 void init();
+
+/// \brief Write a string to stdout.
+///
+/// \param str string to write
+void write(const char* str);
 }  // namespace arch
 
-#endif  // ARCH_ARCH_HPP
+#endif	// ARCH_ARCH_HPP

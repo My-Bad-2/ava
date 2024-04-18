@@ -1,4 +1,6 @@
+#include "errors.h"
 #include <arch.hpp>
+#include <cstdint>
 #include <dev/serials.hpp>
 
 #define SERIALS_DATA 0
@@ -51,12 +53,82 @@
 
 namespace dev {
 void serials::write_register(uint16_t reg, uint8_t val) {
-    outp(this->port + reg, val);
+	outp(this->port + reg, val);
 }
 
 uint8_t serials::read_register(uint16_t reg) {
-    return inp(this->port + reg);
+	return inp(this->port + reg);
 }
 
-void serials::init() {}
+std::expected<void, error_codes> serials::init() {
+	// Disable all interrupts
+	this->write_register(SERIALS_INTERRUPT_IDENTIFACTOR, 0x00);
+
+	// Enable DLAB to set the baud rate divisor
+	this->write_register(SERIALS_LINE_CONTROL, SERIALS_LINE_DLAB_STATUS);
+
+	// Set divisor to 3 (lo bytes) and 0 (hi byte)
+	this->write_register(SERIALS_BAUD_RATE_LOW, 3);
+	this->write_register(SERIALS_BAUD_RATE_HIGH, 0);
+
+	// Configure for 8 bits, no parity, one stop bit
+	this->write_register(SERIALS_LINE_CONTROL, SERIALS_LINE_DS_8);
+
+	// Enable FIFO, clear them with 14-byte threshold
+	this->write_register(SERIALS_FIFO_CONTROLLER,
+						 SERIALS_ENABLE_FIFO | SERIALS_FIFO_CLEAR_RECEIVE |
+							 SERIALS_FIFO_CLEAR_TRANSMIT |
+							 SERIALS_FIFO_TRIGGER_LEVEL4);
+
+	// Enable IRQs, set RTS/DSR
+	this->write_register(SERIALS_MODEM_CONTROL, SERIALS_MODEM_RTS |
+													SERIALS_MODEM_DTR |
+													SERIALS_MODEM_OUT2);
+
+	// Set in loopback mode, test the serial chip
+	this->write_register(SERIALS_MODEM_CONTROL,
+						 SERIALS_MODEM_LOOPBACK | SERIALS_MODEM_RTS |
+							 SERIALS_MODEM_DTR | SERIALS_MODEM_OUT2);
+
+	// Test the serial chip by sending byte 0xAE
+	this->write_register(SERIALS_DATA, 0xAE);
+
+	if (this->read_register(SERIALS_DATA) != 0xAE) {
+		return std::unexpected(ERROR_FAULT);
+	}
+
+	this->write_register(SERIALS_MODEM_CONTROL,
+						 SERIALS_MODEM_RTS | SERIALS_MODEM_DTR |
+							 SERIALS_MODEM_OUT1 | SERIALS_MODEM_OUT2);
+
+	return {};
+}
+
+void serials::putc(uint8_t ch) {
+	while (!(this->read_register(SERIALS_LINE_STATUS) &
+			 SERIALS_LINE_TRANSMITTER_BUF_EMPTY)) {
+		arch::pause();
+	}
+
+	this->write_register(SERIALS_DATA, ch);
+}
+
+uint8_t serials::getc() {
+	while (
+		!(this->read_register(SERIALS_LINE_STATUS) & SERIALS_LINE_DATA_READY)) {
+		arch::pause();
+	}
+
+	return this->read_register(SERIALS_DATA);
+}
+
+void serials::set_port(uint16_t port) {
+	this->port = port;
+}
+
+void serials::write(const char* str) {
+	for (size_t i = 0; str[i] != '\0'; ++i) {
+		this->putc(str[i]);
+	}
+}
 }  // namespace dev

@@ -78,7 +78,10 @@ ovmf_subproject = subproject('ovmf')
 if (c_compiler_id == 'clang')
     libstdcxx_subproject = subproject(
         'libstdc++',
-        default_options: ['architecture=' + get_option('kernel-arch')],
+        default_options: [
+            'architecture=' + get_option('kernel-arch'),
+            'stdlib=libc++',
+        ],
     )
 
     libstdcxx_include = libstdcxx_subproject.get_variable('include_dirs')

@@ -54,7 +54,7 @@
 
 #if defined(__cplusplus)
 #if __cplusplus >= 201703L &&                                                  \
-    (defined(__clang__) || (defined(__GNUC__) && (__GNUC__ >= 10)))
+	(defined(__clang__) || (defined(__GNUC__) && (__GNUC__ >= 10)))
 #define __WARN_UNUSED_CONSTRUCTOR [[nodiscard]]
 #else
 #define __WARN_UNUSED_CONSTRUCTOR
@@ -78,9 +78,9 @@
 #endif
 
 #define __PRINTFLIKE(__fmt, __varargs)                                         \
-    __attribute__((__format__(__printf__, __fmt, __varargs)))
+	__attribute__((__format__(__printf__, __fmt, __varargs)))
 #define __SCANFLIKE(__fmt, __varargs)                                          \
-    __attribute__((__format__(__scanf__, __fmt, __varargs)))
+	__attribute__((__format__(__scanf__, __fmt, __varargs)))
 
 #define __NONNULL(n) __attribute__((__nonnull__ n))
 
@@ -100,7 +100,7 @@
 
 #if defined(__clang__)
 #define __NO_SAFESTACK                                                         \
-    __attribute__((__no_sanitize__("safe-stack", "shadow-call-stack")))
+	__attribute__((__no_sanitize__("safe-stack", "shadow-call-stack")))
 #else
 #define __NO_SAFESTACK
 #endif
@@ -172,8 +172,8 @@
 #define __FALLTHROUGH __attribute__((__fallthrough__))
 #else
 #define __FALLTHROUGH                                                          \
-    do {                                                                       \
-    } while (0)
+	do {                                                                       \
+	} while (0)
 #endif
 
 #ifndef __OWNER
@@ -196,6 +196,6 @@
 #define __CONSTINIT
 #endif
 
-#endif  // !defined(__ASSEMBLER__)
+#endif	// !defined(__ASSEMBLER__)
 
-#endif  // _SYS_CDEFS_H
+#endif	// _SYS_CDEFS_H

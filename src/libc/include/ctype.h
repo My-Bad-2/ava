@@ -1,7 +1,7 @@
 /// \file ctype.h
 /// \author My-Bad-2
 /// \brief Declare character classification functions
-/// \version 0.0.1
+/// \version 0.1
 /// \date 2024-04-16
 ///
 /// \copyright MIT - Copyright (c) 2024

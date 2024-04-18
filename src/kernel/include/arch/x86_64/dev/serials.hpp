@@ -1,10 +1,10 @@
-/// @file serials.hpp
-/// @author My-Bad-2
-/// @brief Serial communication device
-/// @version 0.1
-/// @date 2024-04-18
+/// \file serials.hpp
+/// \author My-Bad-2
+/// \brief Serial communication device
+/// \version 0.1
+/// \date 2024-04-18
 ///
-/// @copyright Copyright (c) 2024
+/// \copyright MIT - Copyright (c) 2024
 
 #ifndef ARCH_DEV_SERIALS_HPP
 #define ARCH_DEV_SERIALS_HPP

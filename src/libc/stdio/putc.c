@@ -1,11 +1,10 @@
 #include <stdio.h>
-#include <sys/errors.h>
 
 int fputc(int ch, FILE* fp) {
 	size_t write_pos = fp->position++;
 
 	if (write_pos >= fp->max_chars) {
-		return -ERROR_TOO_BIG;
+		return -EOF;
 	}
 
 	if (fp->write != NULL) {
@@ -14,7 +13,7 @@ int fputc(int ch, FILE* fp) {
 		fp->buffer[write_pos] = ch;
 	}
 
-	return SUCCESS;
+	return ch;
 }
 
 int putc(int ch, FILE* fp) {

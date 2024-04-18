@@ -2,7 +2,6 @@
 #define _SYS_STDIO_INTERNAL_H
 
 #include <limits.h>
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 

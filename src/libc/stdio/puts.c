@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <string.h>
-#include <sys/errors.h>
 
-int fputs(const char *restrict str, FILE *fp) {
-    const size_t length = strlen(str);
+/// \note The terminating null character from str is not written.
+int fputs(const char* restrict str, FILE* fp) {
+	const size_t length = strlen(str);
 
-    for(size_t i = 0; i < length; ++i) {
-        int ret = fputc(str[i], fp);
+	for (size_t i = 0; i < length; ++i) {
+		int ret = fputc(str[i], fp);
 
-        if(ret != SUCCESS) {
-            return ret;
-        }
-    }
+		if (ret != str[i]) {
+			return ret;
+		}
+	}
 
-    return SUCCESS;
+	return length;
 }
 
-int puts(const char *restrict str) {
-    return fputs(str, stdout);
+int puts(const char* restrict str) {
+	int ret = fputs(str, stdout);
+	fputc('\n', stdout);
+
+	return ret;
 }

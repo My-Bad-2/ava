@@ -1,7 +1,7 @@
 /// \file string.h
 /// \author My-Bad-2
 /// \brief String manipulation functions
-/// \version 0.0.1
+/// \version 0.1
 /// \date 2024-04-16
 ///
 /// \copyright MIT - Copyright (c) 2024

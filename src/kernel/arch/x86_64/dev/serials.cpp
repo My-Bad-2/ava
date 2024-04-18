@@ -60,6 +60,17 @@ uint8_t serials::read_register(uint16_t reg) {
 	return inp(this->port + reg);
 }
 
+/// This member function is responsible for initializing the serial port with the specified
+/// parameters, including baud rate, data size, parity, stop bits, and FIFO settings. It
+/// performs the following initialization steps:
+///   - Sets the serial port's base address.
+///   - Disables interrupts.
+///   - Sets the baud rate divisor for the desired baud rate.
+///   - Configures data size, parity, and stop bits.
+///   - Enables FIFO and sets FIFO trigger levels.
+///   - Enables modem control signals.
+///   - Puts the serial chip in loopback mode and tests its functionality.
+///   - If the test is successful, sets the serial chip in normal operation mode.
 std::expected<void, error_codes> serials::init() {
 	// Disable all interrupts
 	this->write_register(SERIALS_INTERRUPT_IDENTIFACTOR, 0x00);

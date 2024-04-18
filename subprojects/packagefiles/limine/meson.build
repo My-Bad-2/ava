@@ -4,6 +4,11 @@ arch = get_option('limine-arch')
 
 limine_binaries = [meson.current_source_dir() / 'limine-uefi-cd.bin']
 
+limine_include = []
+limine_include += include_directories('.')
+
+limine_executable = meson.current_source_dir() / 'limine'
+
 if arch == ''
     warning('No kernel architecture selected.')
 elif arch == 'x86_64'
@@ -28,8 +33,5 @@ run_command(
     ],
     check: true,
 )
-
-limine_executable = meson.current_source_dir() / 'limine'
-limine_include = [include_directories('.')]
 
 limine_dep = declare_dependency(include_directories: include_directories('.'))

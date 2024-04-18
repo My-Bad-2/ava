@@ -82,6 +82,7 @@ if (c_compiler_id == 'clang')
             'architecture=' + get_option('kernel-arch'),
             'stdlib=libc++',
         ],
+        required: true,
     )
 
     libstdcxx_include = libstdcxx_subproject.get_variable('include_dirs')

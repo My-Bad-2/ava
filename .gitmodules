@@ -1,4 +1,0 @@
-[submodule "docs/template"]
-	path = docs/template
-	url = https://github.com/jothepro/doxygen-awesome-css.git
-	shallow = true

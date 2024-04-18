@@ -8,6 +8,7 @@ kernel_include = [
 kernel_include += limine_subproject_include
 
 subdir('arch' / get_option('kernel-arch'))
+subdir('libc')
 
 clangtidy_files += kernel_sources
 

@@ -116,4 +116,8 @@ void init() {
 void write(const char* str) {
 	serial_device.write(str);
 }
+
+void write(int ch) {
+	serial_device.putc(ch);
+}
 }  // namespace arch

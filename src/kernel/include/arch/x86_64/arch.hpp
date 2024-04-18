@@ -72,10 +72,15 @@ void enable_interrupts();
 /// \brief Initialize Architecture-specific components.
 void init();
 
-/// \brief Write a string to stdout.
+/// \brief Write a string to stream.
 ///
-/// \param str string to write
+/// \param str String to write
 void write(const char* str);
+
+/// \brief Write a character to stream.
+///
+/// \param ch Character to write
+void write(int ch);
 }  // namespace arch
 
 #endif	// ARCH_ARCH_HPP

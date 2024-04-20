@@ -127,6 +127,26 @@ char* strcat(char* restrict dst, const char* restrict src);
 /// \return Returns a copy of dest
 char* strncat(char* restrict dst, const char* restrict src, size_t count);
 
+/// \brief Finds the first occurrence of \p ch in the null-terminated byte string pointed to
+/// by \p str. The terminating null character is considered to be a part of the string and
+/// can be found when searching for '\0'.
+///
+/// \param str pointer to the null-terminated byte string to be analyzed
+/// \param ch character to search for
+/// \return Pointer to the found character in \p str, or null-terminated pointer
+/// if no such character is found
+char* strchr(const char* str, int ch);
+
+/// \brief Finds the last occurrence of \p ch in the null-terminated byte string pointed to
+/// by \p str. The terminating null character is considered to be a part of the string and
+/// can be found if searching for '\0'.
+///
+/// \param str pointer to the null-terminated byte string to be analyzed
+/// \param ch character to search for
+/// \return Pointer to the found character in \p str, or null-terminated pointer
+/// if no such character is found
+char* strrchr(const char* str, int ch);
+
 #ifdef __cplusplus
 }
 #endif

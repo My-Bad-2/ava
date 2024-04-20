@@ -3,7 +3,7 @@
 /// \brief Standard input and output
 /// \version 0.1
 /// \date 2024-04-18
-/// 
+///
 /// \copyright MIT - Copyright (c) 2024
 
 #ifndef _STDIO_H
@@ -24,11 +24,19 @@ extern "C" {
 ///
 /// \brief Each FILE object denotes a C stream.
 typedef struct __file {
+	/// Character buffer
 	char* buffer;
+
+	/// Current buffer position
 	size_t position;
+
+	/// Maximum number of characters allowed in buffer
 	size_t max_chars;
 
+	/// Any extra arguments
 	void* extra_arg;
+
+	/// Function to transmit data
 	void (*write)(int c, void* extra_arg);
 } FILE;
 

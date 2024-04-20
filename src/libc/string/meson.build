@@ -7,4 +7,6 @@ libc_sources += files(
     'strcmp.c',
     'strcpy.c',
     'strlen.c',
+    'strchr.c',
+    'strrchr.c'
 )

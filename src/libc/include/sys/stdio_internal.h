@@ -2,8 +2,9 @@
 #define _SYS_STDIO_INTERNAL_H
 
 #include <limits.h>
-#include <stdint.h>
 #include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
 
 #ifndef STDIO_SUPPORT_LONG_LONG
 #define STDIO_SUPPORT_LONG_LONG 1

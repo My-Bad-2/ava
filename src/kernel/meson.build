@@ -1,4 +1,4 @@
-kernel_sources = files('kmain.cpp')
+kernel_sources = files('kmain.cpp', 'log.cpp')
 
 kernel_include = [
     include_directories('include/'),
@@ -8,7 +8,7 @@ kernel_include = [
 kernel_include += limine_subproject_include
 
 subdir('arch' / get_option('kernel-arch'))
-subdir('libc')
+subdir('glue')
 
 clangtidy_files += kernel_sources
 

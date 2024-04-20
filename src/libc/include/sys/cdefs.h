@@ -196,6 +196,8 @@
 #define __CONSTINIT
 #endif
 
+#define __COLD __attribute__((cold))
+
 #endif	// !defined(__ASSEMBLER__)
 
 #endif	// _SYS_CDEFS_H

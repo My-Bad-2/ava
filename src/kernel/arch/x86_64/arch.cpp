@@ -1,5 +1,6 @@
 #include <arch.hpp>
 #include <cpu/gdt.hpp>
+#include <cpu/idt.hpp>
 #include <dev/serials.hpp>
 
 /// This inline assembly function reads a byte from the specified I/O port using the `INB` (Input Byte)
@@ -117,6 +118,7 @@ void init() {
 	}
 
 	cpu::init_gdt();
+	cpu::init_idt();
 
 	enable_interrupts();
 }

@@ -1,1 +1,1 @@
-kernel_sources += files('gdt.cpp', 'gdt.S')
+kernel_sources += files('gdt.cpp', 'gdt.S', 'idt.cpp', 'interrupts.cpp', 'interrupts.S')

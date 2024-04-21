@@ -1,9 +1,9 @@
 .macro ISR number
 interrupt_\number:
 .if !(\number == 8 || (\number >= 10 && \number <= 14) || \number == 17 || \number == 21 || \number == 29 || \number == 30)
-    push 0
+    push $0
 .endif
-    pushq $\number
+    push $\number
     jmp interrupt_common
 .endm
 

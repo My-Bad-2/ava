@@ -58,7 +58,7 @@ static void dump_interrupt_frame(interrupt_frame_t* frame) {
 }
 
 static void error_handler(interrupt_frame_t* frame) {
-    LOG_ERROR("Exception(%s) occurred", exception_messages[frame->vector], frame->vector);
+    LOG_ERROR("Exception(%s) occurred", exception_messages[frame->vector]);
 
     dump_interrupt_frame(frame);
 

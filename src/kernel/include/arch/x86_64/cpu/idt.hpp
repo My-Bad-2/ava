@@ -31,6 +31,10 @@ struct idt_entry_t {
 		: offset0_15(handler & 0xFFFF), selector(selector), ist_index(ist),
 		  attributes(flags), offset16_31((handler >> 16) & 0xFFFF),
 		  offset32_63((handler >> 32) & 0xFFFFFFFF), reserved(0) {}
+
+	uint64_t offset() {
+		return offset0_15 | (offset16_31 << 16) | (static_cast<uint64_t>(offset32_63) << 32);
+	}
 } __PACKED;
 
 struct idt_descriptor_t {

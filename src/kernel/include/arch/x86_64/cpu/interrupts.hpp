@@ -13,8 +13,6 @@ struct interrupt_frame_t {
 	uint64_t ip, cs, flags;
 	uint64_t user_sp, user_ss;
 } __PACKED;
-
-
 }  // namespace arch::cpu
 
 #endif	// ARCH_CPU_INTERRUPTS_HPP

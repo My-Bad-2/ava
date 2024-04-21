@@ -1,5 +1,6 @@
 #include <cpu/gdt.hpp>
 #include <cpu/idt.hpp>
+#include <log.hpp>
 
 extern "C" uintptr_t __interrupt_vector[arch::cpu::max_idt_entries];
 
@@ -27,5 +28,7 @@ void init_idt() {
 	};
 
 	descriptor.flush();
+
+	LOG_INFO("Initialized Interrupt Descriptor Table.");
 }
 }  // namespace arch::cpu

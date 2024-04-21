@@ -1,0 +1,1 @@
+kernel_sources += files('gdt.cpp', 'gdt.S')

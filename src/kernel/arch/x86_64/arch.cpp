@@ -1,4 +1,5 @@
 #include <arch.hpp>
+#include <cpu/gdt.hpp>
 #include <dev/serials.hpp>
 
 /// This inline assembly function reads a byte from the specified I/O port using the `INB` (Input Byte)
@@ -106,11 +107,18 @@ void pause() {
 }
 
 void init() {
+	disable_interrupts();
+
 	// Initialize the serial device, return if the serial chip is faulty.
 	serial_device.set_port(SERIAL_COM_PORT_1);
+
 	if (!serial_device.init()) {
 		return;
 	}
+
+	cpu::init_gdt();
+
+	enable_interrupts();
 }
 
 void write(const char* str) {

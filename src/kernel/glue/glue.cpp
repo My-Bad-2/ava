@@ -1,10 +1,10 @@
 #include <arch.hpp>
-#include <libc/glue.hpp>
+#include <glue/glue.hpp>
 #include <stdio.h>
 
 FILE __streams[3] = {};
 
-namespace glue::libc {
+namespace glue {
 namespace {
 void putchar(int ch, void*) {
 	return arch::write(ch);

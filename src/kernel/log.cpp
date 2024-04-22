@@ -19,8 +19,8 @@ logger_base* glogger = nullptr;
 void log_msg(FILE* stream, const char* prefix, const char* color,
 			 std::source_location location, const char* format, va_list args) {
 	fprintf(stream, "%s%s%s", color, prefix, LOG_COLOR_RESET);
-	fprintf(stream, "%s%s [%d]: %s", LOG_COLOR_YELLOW, GET_FILENAME(location.file_name()),
-			location.line(), color);
+	fprintf(stream, "%s%s [%d]: %s", LOG_COLOR_YELLOW,
+			GET_FILENAME(location.file_name()), location.line(), color);
 
 	vfprintf(stream, format, args);
 

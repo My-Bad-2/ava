@@ -1,6 +1,6 @@
-#include "errors.h"
+#include <stddef.h>
+
 #include <arch.hpp>
-#include <cstdint>
 #include <dev/serials.hpp>
 
 #define SERIALS_DATA 0
@@ -71,7 +71,7 @@ uint8_t serials::read_register(uint16_t reg) {
 ///   - Enables modem control signals.
 ///   - Puts the serial chip in loopback mode and tests its functionality.
 ///   - If the test is successful, sets the serial chip in normal operation mode.
-std::expected<void, error_codes> serials::init() {
+bool serials::init() {
 	// Disable all interrupts
 	this->write_register(SERIALS_INTERRUPT_IDENTIFACTOR, 0x00);
 
@@ -105,14 +105,14 @@ std::expected<void, error_codes> serials::init() {
 	this->write_register(SERIALS_DATA, 0xAE);
 
 	if (this->read_register(SERIALS_DATA) != 0xAE) {
-		return std::unexpected(ERROR_FAULT);
+		return false;
 	}
 
 	this->write_register(SERIALS_MODEM_CONTROL,
 						 SERIALS_MODEM_RTS | SERIALS_MODEM_DTR |
 							 SERIALS_MODEM_OUT1 | SERIALS_MODEM_OUT2);
 
-	return {};
+	return true;
 }
 
 void serials::putc(uint8_t ch) {

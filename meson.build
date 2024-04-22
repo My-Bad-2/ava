@@ -80,7 +80,7 @@ if (c_compiler_id == 'clang')
         'libstdc++',
         default_options: [
             'architecture=' + get_option('kernel-arch'),
-            'stdlib=libc++',
+            'stdlib=libstdc++',
         ],
         required: true,
     )

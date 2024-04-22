@@ -69,6 +69,9 @@ void disable_interrupts();
 /// \brief Enable interrupts.
 void enable_interrupts();
 
+/// \brief Initialize Architecture-specific components for early use, e.g. Serials.
+void early_init();
+
 /// \brief Initialize Architecture-specific components.
 void init();
 

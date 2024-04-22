@@ -1,0 +1,1 @@
+kernel_sources += files('memory.cpp', 'pmm.cpp')

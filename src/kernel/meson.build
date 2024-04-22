@@ -9,6 +9,7 @@ kernel_include += limine_subproject_include
 
 subdir('arch' / get_option('kernel-arch'))
 subdir('glue')
+subdir('memory')
 
 clangtidy_files += kernel_sources
 

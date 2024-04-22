@@ -9,8 +9,6 @@
 #ifndef ARCH_DEV_SERIALS_HPP
 #define ARCH_DEV_SERIALS_HPP
 
-#include <errors.h>
-#include <expected>
 #include <stdint.h>
 
 #define SERIAL_COM_PORT_1 0x3F8
@@ -30,8 +28,9 @@ class serials {
 
 	/// \brief Initialize the serial port device.
 	///
-	/// \return An error if the serial chip is faulty.
-	std::expected<void, error_codes> init();
+	/// \return Returns false, if the serial chip is faulty.
+	/// \return Returns true, otherwise.
+	bool init();
 
 	/// \brief Transmit a single character over the serial port.
 	///

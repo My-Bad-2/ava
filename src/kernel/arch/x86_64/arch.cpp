@@ -107,15 +107,22 @@ void pause() {
 	asm volatile("pause");
 }
 
-void init() {
+void early_init() {
 	disable_interrupts();
 
 	// Initialize the serial device, return if the serial chip is faulty.
 	serial_device.set_port(SERIAL_COM_PORT_1);
 
+	// TODO: Do something to handle faulty.
 	if (!serial_device.init()) {
 		return;
 	}
+
+	enable_interrupts();
+}
+
+void init() {
+	disable_interrupts();
 
 	cpu::init_gdt();
 	cpu::init_idt();
